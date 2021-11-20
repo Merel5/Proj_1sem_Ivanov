@@ -6,7 +6,10 @@ import math
 
 
 def power1(a, b):  # Функция
-    ab = float(math.exp(b*math.log(a, math.e)))
+    if a <= 0:
+        ab = 0
+    else:
+        ab = float(math.exp(b*math.log(a, math.e)))
     return ab
 
 

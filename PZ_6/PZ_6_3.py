@@ -5,6 +5,28 @@
 import random
 
 
+N = int(input('Размер списка: '))  # Ввод данных
+t = N
 A = []
-
-
+k = int(input('Сдвиг списка: '))
+B = []
+n = k
+g = n
+a = k
+while n:  # Создание списка
+    B.append(random.randint(-100, 100))
+    n -= 1
+while t:
+    A.append(random.randint(-100, 100))
+    t -= 1
+print(A)
+N -= 1  # Преобразование списка
+k -= 1
+B[k] = A[N]
+A.pop()
+a -= 1
+while g:
+    A.insert(0, B[a])
+    a -= 1
+    g -= 1
+print(A)  # Вывод, получившегося списка

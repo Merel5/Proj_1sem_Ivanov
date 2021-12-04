@@ -3,17 +3,17 @@
 import random
 
 
-a = 0
+a = 0  # Ввод данных
 N = int(input('Размер списка: '))
 t = int(N)
 A = []
 p = N
 N -= 1
-while t:
+while t:  # Создание списка
     A.append(random.randint(-100, 100))
     t -= 1
 print(A)
-while p:
+while p:  # Решение и вывод списка
     if a <= N:
         print(A[a])
         a += 1

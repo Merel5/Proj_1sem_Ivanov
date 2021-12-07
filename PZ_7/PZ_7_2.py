@@ -7,6 +7,6 @@ a = []
 kl = s.split()  # Решение
 for element in kl:
     if element[0].isalpha():
-        element = element.title()
+        element = element.capitalize()
     a.append(element)
 print(' '.join(a))  # Вывод результата

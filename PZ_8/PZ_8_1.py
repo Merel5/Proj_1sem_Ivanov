@@ -4,8 +4,7 @@
 A = {}
 a = 0
 b = 0
-c = int(input('Длина словаря: '))
-for a in range(0, c):
+for a in range(0, 7):
     b = a
     b *= b
     A[a] = b

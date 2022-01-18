@@ -25,3 +25,4 @@ f2 = open('results.txt', 'w', encoding='UTF-8')
 f2.write('Исходные данные:')
 f2.writelines(a)
 f2.write('Количество элементов:')
+

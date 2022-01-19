@@ -11,7 +11,7 @@
 import random
 
 
-c = 0
+c = 0  # Ввод данных
 v = 0
 a = []
 b = random.randint(1, 12)
@@ -24,7 +24,7 @@ f1.writelines(a)
 a = a.replace('[', '')
 a = a.replace(']', '')
 a = a.split(',')
-f2 = open('results.txt', 'w', encoding='UTF-8')
+f2 = open('results.txt', 'w', encoding='UTF-8')  # Вывод данных
 f2.write('Исходные данные:')
 f2.writelines(a)
 f2.write('\n')

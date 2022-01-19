@@ -11,6 +11,8 @@
 import random
 
 
+c = 0
+v = 0
 a = []
 b = random.randint(1, 12)
 while b > 0:
@@ -22,8 +24,33 @@ f1.writelines(a)
 a = a.replace('[', '')
 a = a.replace(']', '')
 a = a.split(',')
-print(a)
 f2 = open('results.txt', 'w', encoding='UTF-8')
 f2.write('Исходные данные:')
 f2.writelines(a)
+f2.write('\n')
 f2.write('Количество элементов:')
+f2.write((str(len(a))))
+f2.write('\n')
+f2.write('Положительные числа:')
+for i in range(len(a)):
+    a[i] = int(a[i])
+    if a[i] > 0:
+        f2.write(str(a[i]))
+        f2.write(' ')
+    if a[i] > 0:
+        c += 1
+f2.write('\n')
+f2.write('Количество положительных чисел:')
+f2.write(str(c))
+f2.write('\n')
+f2.write('Отрицательные числа:')
+for i in range(len(a)):
+    a[i] = int(a[i])
+    if a[i] < 0:
+        f2.write(str(a[i]))
+        f2.write(' ')
+    if a[i] < 0:
+        v += 1
+f2.write('\n')
+f2.write('Количество отрицательных чисел:')
+f2.write(str(v))

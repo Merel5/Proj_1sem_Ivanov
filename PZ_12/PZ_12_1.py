@@ -2,7 +2,6 @@
 # его в IDE PyCharm Community с применением пакета tk. Получить интерфейс
 # максимально приближенный к оригиналу
 from tkinter import *
-from tkinter import ttk
 root = Tk()
 root.title("Workshop Registration")
 root.geometry('1200x600')

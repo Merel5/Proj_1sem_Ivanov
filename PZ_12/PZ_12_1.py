@@ -1,18 +1,60 @@
 # В соответствии с номером варианта перейти по ссылке на прототип. Реализовать
 # его в IDE PyCharm Community с применением пакета tk. Получить интерфейс
 # максимально приближенный к оригиналу
+import tkinter
 from tkinter import *
 root = Tk()
 root.title("Workshop Registration")
-root.geometry('1200x600')
-def button_clicked():
-    print("")
+root.geometry('2000x600')
 def close():
     root.destroy()
     root.quit()
 
 
-a = Label(text="Register now while seats are available!", fg='red')
-a.place(x=2, y=10)
+a1 = Label(text="Register now while seats are available!", fg='red')
+a1.place(x=2, y=5)
+a2 = Label(text="First Name *")
+a2.place(x=2, y=30)
+a3 = Label(text="Last Name *")
+a3.place(x=2, y=55)
+a4 = Label(text="Company/Institution *")
+a4.place(x=2, y=80)
+a5 = Label(text="Address *")
+a5.place(x=2, y=105)
+a6 = Label(text="City")
+a6.place(x=2, y=280)
+a7 = Label(text="State/Province/Region")
+a7.place(x=2, y=305)
+a8 = Label(text="Country")
+a8.place(x=2, y=330)
+a9 = Label(text="Email *")
+a9.place(x=2, y=355)
+a10 = Label(text="Phone Number *")
+a10.place(x=2, y=380)
+b1 = Entry(width="105")
+b1.place(x=150, y=30)
+b2 = Entry(width="105")
+b2.place(x=150, y=55)
+b3 = Entry(width="105")
+b3.place(x=150, y=80)
+b4 = Text(width="80", height="10")
+b4.place(x=150, y=105)
+b5 = Entry(width="105")
+b5.place(x=150, y=280)
+v1 = tkinter.StringVar(root)
+v1.set("-Select-")
+v2 = tkinter.StringVar(root)
+v2.set("-Select-")
+b6 = tkinter.OptionMenu(root, v1, "Российская Федерация", "Центральный федеральный округ",
+                        "Северо-Западный федеральный округ", "Южный федеральный округ",
+                        "Приволжский федеральный округ", "Уральский федеральный округ", "Сибирский федеральный округ",
+                        "Дальневосточный федеральный округ")
+b7 = tkinter.OptionMenu(root, v2, " Россия", "Украина", "Франция", "Испания", "Швеция", "Казахстан")
+b6.place(x=150, y=305)
+b7.place(x=150, y=330)
+b8 = Entry(width="105")
+b8.place(x=150, y=355)
+b9 = Entry(width="105")
+b9.place(x=150, y=380)
 root.protocol('WM_DELETE_WINDOW', close)
 root.mainloop()

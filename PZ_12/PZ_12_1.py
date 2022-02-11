@@ -4,16 +4,14 @@
 import tkinter
 from tkinter import *
 from tkinter import font
-root = Tk()
-root.title("Workshop Registration")
-root.geometry('1500x600')
-
-
 def close():
     root.destroy()
     root.quit()
 
 
+root = Tk()
+root.title("Workshop Registration")
+root.geometry('1500x600')
 a1 = Label(text="Register now while seats are available!")
 a1.place(x=2, y=5)
 f = font.Font(a1, a1.cget("font"))

@@ -1,14 +1,12 @@
 # Разработать программу с применением пакета tk по условию: Найти сумму чисел
 # ряда 1,2,3,4,... от числа n до m. Суммирование оформить функцией с параметрами.
 # Значения n и m программа должна запрашивать.
-from tkinter import *
+from tkinter import *  # импортирую библиотеку
 
 
-def close():
+def close():  # Функции
     root.destroy()
     root.quit()
-
-
 def jet():
     try:
         a = int(n.get())
@@ -23,7 +21,7 @@ def jet():
         a4.config(text="Ошибка введите цифры")
 
 
-root = Tk()
+root = Tk()  # Виджеты
 root.title("Summary")
 root.geometry('500x400')
 a1 = Label(root, text="Задать числа n и m для суммирования всех чисел между ними")

@@ -1,17 +1,17 @@
 # В соответствии с номером варианта перейти по ссылке на прототип. Реализовать
 # его в IDE PyCharm Community с применением пакета tk. Получить интерфейс
 # максимально приближенный к оригиналу
-import tkinter
+import tkinter  # импортирую библиотеки
 from tkinter import *
 from tkinter import font
 
 
-def close():
+def close():  # Функция
     root.destroy()
     root.quit()
 
 
-root = Tk()
+root = Tk()  # Виджеты
 root.title("Workshop Registration")
 root.geometry('1500x600')
 a1 = Label(text="Register now while seats are available!")

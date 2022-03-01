@@ -3,11 +3,8 @@ import random
 
 
 n = int(input('Введите кол-во целых чисел в последовательности: '))
-a = []
-while n > 0:
-    a.append(random.randint(-100, 100))
-    n -= 1
+a = [x for x in random.randint(-100, 100)]
 print(a)
 b = a[0]
-с = [b * i for i in a]
-print(с)
+c = [b * i for i in a]
+print(c)

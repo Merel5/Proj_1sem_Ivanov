@@ -1,16 +1,12 @@
 from math import pi
+__all__ = ['circle_perimeter', 'circle_area']
 
 
-def circle_perimeter(r):
+def circle_perimeter(r=5):
     c = 2*r*pi
-    return c
+    print(c)
 
 
-def circle_area(r):
+def circle_area(r=5):
     s = pi*r*r
-    return s
-
-
-r = 5
-print(circle_perimeter(r))
-print(circle_area(r))
+    print(s)

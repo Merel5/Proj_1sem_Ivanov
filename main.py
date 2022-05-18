@@ -19,28 +19,13 @@ class Main(tk.Frame):
 
         self.add_img = tk.PhotoImage(file="BD/11.gif")
         self.btn_open_dialog = tk.Button(toolbar, text='Добавить игрока', command=self.open_dialog, bg='#5da130', bd=0,
-                                    compound=tk.TOP, image=self.add_img)
+                                         compound=tk.TOP, image=self.add_img)
         self.btn_open_dialog.pack(side=tk.LEFT)
 
         self.update_img = tk.PhotoImage(file="BD/12.gif")
         btn_edit_dialog = tk.Button(toolbar, text="Редактировать", command=self.open_update_dialog, bg='#5da130',
                                     bd=0, compound=tk.TOP, image=self.update_img)
         btn_edit_dialog.pack(side=tk.LEFT)
-
-        self.delete_img = tk.PhotoImage(file="BD/13.gif")
-        btn_delete = tk.Button(toolbar, text="Удалить запись", command=self.delete_records, bg='#5da130',
-                                    bd=0, compound=tk.TOP, image=self.delete_img)
-        btn_delete.pack(side=tk.LEFT)
-
-        self.search_img = tk.PhotoImage(file="BD/14.gif")
-        btn_search = tk.Button(toolbar, text="Поиск записи", command=self.open_search_dialog, bg='#5da130',
-                               bd=0, compound=tk.TOP, image=self.search_img)
-        btn_search.pack(side=tk.LEFT)
-
-        self.refresh_img = tk.PhotoImage(file="BD/15.gif")
-        btn_refresh = tk.Button(toolbar, text="Обновить экран", command=self.view_records, bg='#5da130',
-                               bd=0, compound=tk.TOP, image=self.refresh_img)
-        btn_refresh.pack(side=tk.LEFT)
 
         self.tree = ttk.Treeview(self, columns=('user_id', 'name', 'sex', 'old', 'score'), height=15, show='headings')
 
@@ -66,6 +51,7 @@ class Main(tk.Frame):
         self.db.cur.execute("""UPDATE users SET user_id=?, name=?, sex=?, old=?, score=? WHERE user_id=?""",
                             (user_id, name, sex, old, score, self.tree.set(self.tree.selection()[0], '#1')))
         self.db.con.commit()
+
         self.view_records()
 
     def view_records(self):
@@ -73,33 +59,11 @@ class Main(tk.Frame):
         [self.tree.delete(i) for i in self.tree.get_children()]
         [self.tree.insert('', 'end', values=row) for row in self.db.cur.fetchall()]
 
-    def delete_records(self):
-        for selection_item in self.tree.selection():
-            self.db.cur.execute("""DELETE FROM users WHERE user_id=?""", (self.tree.set(selection_item, '#1'),))
-        self.db.con.commit()
-        self.view_records()
-
-    # def search_records(self, user_id):
-    #     user_id = ("%" + user_id + "%",)
-    #     self.db.cur.execute("""SELECT * FROM users WHERE name LIKE ?""", user_id)
-    #     [self.tree.delete(i) for i in self.tree.get_children()]
-    #     [self.tree.insert('', 'end', values=row) for row in self.db.cur.fetchall()]
-
-    def search_records(self, score):
-        score = (score,)
-        self.db.cur.execute("""SELECT * FROM users WHERE score>?""", score)
-        [self.tree.delete(i) for i in self.tree.get_children()]
-        [self.tree.insert('', 'end', values=row) for row in self.db.cur.fetchall()]
-
-
     def open_dialog(self):
         Child(root, app)
 
     def open_update_dialog(self):
         Update()
-
-    def open_search_dialog(self):
-        Search()
 
 
 class Child(tk.Toplevel):
@@ -175,35 +139,8 @@ class Update(Child):
         self.btn_ok.destroy()
 
 
-class Search(tk.Toplevel):
-    def __init__(self):
-        super().__init__()
-        self.init_search()
-        self.view = app
-
-    def init_search(self):
-        self.title("Поиск")
-        self.geometry("300x100+400+300")
-        self.resizable(False, False)
-
-        label_search = tk.Label(self, text="Поиск")
-        label_search.place(x=50, y=20)
-
-        self.entry_search = ttk.Entry(self)
-        self.entry_search.place(x=105, y=20, width=150)
-
-        btn_cancel = ttk.Button(self, text="Закрыть", command=self.destroy)
-        btn_cancel.place(x=185, y=50)
-
-        btn_search = ttk.Button(self, text="Поиск")
-        btn_search.place(x=105, y=50)
-        btn_search.bind('<Button-1>', lambda event: self.view.search_records(self.entry_search.get()))
-        btn_search.bind('<Button-1>', lambda event: self.destroy(), add='+')
-
-
 class DB:
     def __init__(self):
-
         with sq.connect('BD/saper.db') as self.con:
             self.cur = self.con.cursor()
             self.cur.execute("""CREATE TABLE IF NOT EXISTS users (
@@ -216,7 +153,7 @@ class DB:
 
     def insert_data(self, user_id, name, sex, old, score):
         self.cur.execute("""INSERT INTO users(user_id, name, sex, old, score) VALUES (?, ?, ?, ?, ?)""",
-                             (user_id, name, sex, old, score))
+                         (user_id, name, sex, old, score))
         self.con.commit()
 
 

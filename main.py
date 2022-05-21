@@ -171,6 +171,7 @@ class Update(Child):
                                                                           self.combobox.get(),
                                                                           self.entry_old.get(),
                                                                           self.entry_score.get()))
+
         self.btn_ok.destroy()
 
 

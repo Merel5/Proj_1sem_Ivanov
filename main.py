@@ -224,7 +224,7 @@ if __name__ == "__main__":
     db = DB()
     app = Main(root)
     app.pack()
-    root.title("Работа с базой данных Сапер")
+    root.title('Работа с базой данных "Сапер"')
     root.geometry("650x450+300+200")
     root.resizable(False, False)
     root.mainloop()

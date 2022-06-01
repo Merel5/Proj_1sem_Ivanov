@@ -71,8 +71,8 @@ class Main(tk.Frame):
         [self.tree.insert('', 'end', values=row) for row in self.db.cur.fetchall()]
 
     def search_records(self, executioner):
-        executioner = (executioner,)
-        self.db.cur.execute("""SELECT * FROM instructions WHERE executioner=?""", executioner)
+        executioner = ("%" + executioner + "%",)
+        self.db.cur.execute("""SELECT * FROM instructions WHERE executioner LIKE ?""", executioner)
         [self.tree.delete(i) for i in self.tree.get_children()]
         [self.tree.insert('', 'end', values=row) for row in self.db.cur.fetchall()]
 

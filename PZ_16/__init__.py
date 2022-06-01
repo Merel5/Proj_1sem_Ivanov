@@ -37,6 +37,11 @@ class Main(tk.Frame):
                                 bd=0, compound=tk.TOP, image=self.refresh_img)
         btn_refresh.pack(side=tk.LEFT)
 
+        self.update_img = tk.PhotoImage(file="15.gif")
+        btn_edit_dialog = tk.Button(toolbar, text="Редактировать", command=self.open_update_dialog, bg='#5da130',
+                                    bd=0, compound=tk.TOP, image=self.update_img)
+        btn_edit_dialog.pack(side=tk.LEFT)
+
         self.tree = ttk.Treeview(self, columns=('instruction_id', 'name', 'data', 'term', 'executioner'), height=15,
                                  show='headings')
 
@@ -57,6 +62,13 @@ class Main(tk.Frame):
     def records(self, instruction_id, name, data, term, executioner):
             self.db.insert_data(instruction_id, name, data, term, executioner)
             self.view_records()
+
+    def update_record(self, instruction_id, name, data, term, executioner):
+        self.db.cur.execute("""UPDATE instructions SET instruction_id=?, name=?, data=?, term=?, executioner=? WHERE 
+        instruction_id=?""", (instruction_id, name, data, term, executioner, self.tree.set(self.tree.selection()[0],
+                                                                                           '#1')))
+        self.db.con.commit()
+        self.view_records()
 
     def delete_records(self):
         for selection_item in self.tree.selection():
@@ -81,6 +93,9 @@ class Main(tk.Frame):
 
     def open_search_dialog(self):
         Search()
+
+    def open_update_dialog(self):
+        Update()
 
 
 class Child(tk.Toplevel):
@@ -135,6 +150,25 @@ class Child(tk.Toplevel):
 
         self.grab_set()
         self.focus_set()
+
+
+class Update(Child):
+    def __init__(self):
+        super().__init__(root, app)
+        self.init_edit()
+        self.view = app
+
+    def init_edit(self):
+        self.title("Редактировать запись")
+        btn_edit = ttk.Button(self, text="Редактировать")
+        btn_edit.place(x=205, y=170)
+        btn_edit.bind('<Button-1>', lambda event: self.view.update_record(self.entry_description.get(),
+                                                                          self.entry_name.get(),
+                                                                          self.combobox.get(),
+                                                                          self.entry_old.get(),
+                                                                          self.entry_score.get()))
+
+        self.btn_ok.destroy()
 
 
 class Search(tk.Toplevel):
